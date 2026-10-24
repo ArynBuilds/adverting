@@ -1,10 +1,9 @@
 # Adverting
 
-Marketing site for Adverting, a daily-brief tool for digital marketing agencies.
+Front end for Adverting, a daily-brief tool for digital marketing agencies.
 Every morning the product pulls what is trending in each client's sector, explains
 why it took off, and hands over one concrete action per client, ranking which
-client needs attention first. This repository is the marketing site; the product
-behind it is specified in PRODUCT.md.
+client needs attention first. PRODUCT.md holds the full product spec.
 
 The brief, from PRODUCT.md: the site itself is the marketing creative - specific,
 dated, declarative copy, numbers over adjectives, Turkish first. Three colours,
