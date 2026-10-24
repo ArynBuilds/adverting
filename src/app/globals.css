@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ink: #0A0A0A;
+  --volt: #C6FF3D;
+  --paper: #F4F1EA;
+  --bg: var(--ink);
+  --fg: var(--paper);
+  --accent: var(--volt);
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  color-scheme: dark;
+}
+
+[data-theme='paper'] {
+  --bg: var(--paper);
+  --fg: var(--ink);
+  color-scheme: light;
+}
+
+[data-theme='ink'] {
+  --bg: var(--ink);
+  --fg: var(--paper);
+  color-scheme: dark;
+}
+
+[data-theme='volt'] {
+  --bg: var(--volt);
+  --fg: var(--ink);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 200ms var(--ease), color 200ms var(--ease);
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+::selection {
+  background: var(--volt);
+  color: var(--ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+button, a, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+input:focus, textarea:focus, button:focus, a:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--volt);
+  outline-offset: 3px;
+  border-radius: 999px;
+  transition: outline-offset 200ms var(--ease);
+}
+
+@keyframes drawn-underline {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes volt-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(0.78); opacity: 0.55; }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%      { transform: translateX(-8px); }
+  40%      { transform: translateX(8px); }
+  60%      { transform: translateX(-6px); }
+  80%      { transform: translateX(6px); }
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    animation: progress-fill linear;
+    animation-timeline: scroll(root);
+  }
+  @keyframes progress-fill {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.shake {
+  animation: shake 240ms var(--ease);
+}
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.text-balance { text-wrap: balance; }
+.text-pretty  { text-wrap: pretty; }
+
+.display-tight {
+  font-family: var(--font-display);
+  font-feature-settings: 'ss01', 'ss02';
+  letter-spacing: -0.04em;
+  line-height: 0.86;
+}
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
